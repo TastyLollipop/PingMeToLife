@@ -28,14 +28,19 @@ namespace PingMeToLife
 
             while (true)
             {
-                if (isDebugging)
+                try
                 {
-                    PingReply sender = pingSender.Send(address, timeout);
-                    Console.WriteLine($"{sender.Address} / {sender.RoundtripTime}");
-                }
-                else pingSender.Send(address, timeout);
+                    if (isDebugging)
+                    {
+                        PingReply sender = pingSender.Send(address, timeout);
+                        Console.WriteLine($"{sender.Address} / {sender.RoundtripTime}");
+                    }
+                    else pingSender.Send(address, timeout);
 
-                Thread.Sleep(timeout);   
+                    Thread.Sleep(timeout);
+                }
+
+                catch { continue; }
             }
         }
     }
