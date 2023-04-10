@@ -28,6 +28,8 @@ namespace PingMeToLife
 
             while (true)
             {
+                Thread.Sleep(timeout);
+
                 try
                 {
                     if (isDebugging)
@@ -36,8 +38,6 @@ namespace PingMeToLife
                         Console.WriteLine($"{sender.Address} / {sender.RoundtripTime}");
                     }
                     else pingSender.Send(address, timeout);
-
-                    Thread.Sleep(timeout);
                 }
 
                 catch { continue; }
